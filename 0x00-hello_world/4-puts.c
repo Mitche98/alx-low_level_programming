@@ -1,8 +1,8 @@
 #include <stdio.h>
 /** 
- * main - initializes function
+ * main - initializes code using puts
  *
- * return(0) - terminates function
+ * return: 0
  */
 int main(void)
 {
