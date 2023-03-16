@@ -1,9 +1,9 @@
 #include <stdio.h>
-/** 
- * main - initializes code using puts
+/**
+ * main -print line of code using puts
  *
- * return: 0
- */
+ * Return: 0
+*/
 int main(void)
 {
 	puts("\"Programming is like building a multilingual puzzle");
