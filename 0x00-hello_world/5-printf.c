@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * printf -gets SI/O
+ * printf -main
  *
  * Return: 0
 */
