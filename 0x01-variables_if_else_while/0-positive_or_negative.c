@@ -1,12 +1,5 @@
-/*
- *File: 0-positive_or_negative.c
- *Auth: Jeremiah Omokaro
- *
-*/
-
 #include <stdlib.h>
 #include <time.h>
-#include <stdio.h>
 
 /**
  *main -Prints the last digit of a randomly generated number 
