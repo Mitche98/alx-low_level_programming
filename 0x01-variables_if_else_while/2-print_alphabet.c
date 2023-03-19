@@ -11,5 +11,5 @@
 int main(void)
 {
 	putchar('a..z');
-	putchat('A..Z');
+	putchar('A..Z');
 }
