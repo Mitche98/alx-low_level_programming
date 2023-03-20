@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- *
+ * code by Mitche
  * Return: 0 (success)
 */
 int main(void)
