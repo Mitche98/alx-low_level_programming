@@ -1,11 +1,5 @@
-#include <unistd.h>
-/**
- * _putchar - Trial for the first time
- *
- * Return: On success 1
- *
-*/
-int _putchar(char c)
-{
-	return(write(1, &c, 1));
-}
+#ifndef MAIN_H_
+#define MAIN_H_
+int _putchar(char c);
+
+#endif /* _MAIN_H_| */
