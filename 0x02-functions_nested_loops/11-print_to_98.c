@@ -5,7 +5,8 @@
  * print_to_98 - prints natural numbers from n-98
  * followed by a new line
  *
- * @n: print this number
+ * @n: print this numbe
+ * Return: Always 0r
  */
 void print_to_98(int n)
 {
