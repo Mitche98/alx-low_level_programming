@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * main-Entry point
+ * _islower - check if char is lowercase
+ * @c: is the char to be chacked
  *
  * Return: 1 if int c is lowercase, else 0
 */
