@@ -8,21 +8,17 @@
 int main(void)
 {
 	int i;
-	int j;
 
-	for (i = 0; i < 1000; i++)
+	printf("Causing an infinite loop \n");
+
+	i = 0;
+
+	while (i < 10)
 	{
-		j = 1000;
-		while (i >= j)
-		{
-			if (j != 0 && i == j)
-			{
-				printf("You did a good job");
-			}
-			else
-				printf("Not so bad");
-		}
-		printf("\n");
+		putchar(i);
 	}
+
+	printf("Want to see this work! \\o/\n");
+
 	return (0);
 }
