@@ -5,7 +5,7 @@
  * @dest: string to append to
  * @src: string to append from
  *
- * Return: to dest 
+ * Return: to dest
  */
 char *_strcat(char *dest, char *src)
 {
