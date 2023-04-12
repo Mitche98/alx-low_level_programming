@@ -8,7 +8,6 @@
  * initializes it with a specific char
  * @size: size or arrays
  * @c: char to initialize
- * @NULL: return if size = 0
  *
  * Return: a pointer to the array, NULL if it fails
  */
