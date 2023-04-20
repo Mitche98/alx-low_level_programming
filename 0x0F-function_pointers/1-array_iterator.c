@@ -1,0 +1,22 @@
+#include "function_pointer.h"
+#include <stdio.h>
+/**
+ * array_iterator - prints each arry element on new line
+ * @array: array
+ * @size: how many elem to print out
+ * @action: pointer to print in regular or hex
+ */
+void array_iterator(int *array, size_t size, void (*action)(int))
+{
+	unsigned int i;
+
+	if (array == NULL || action == NULL)
+	{
+		return;
+	}
+
+	for (i = 0; i < size; i++)
+	{
+		action(array[i]);
+	}
+}
