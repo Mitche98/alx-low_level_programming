@@ -15,22 +15,20 @@ int _strlen_recursion(char *s)
 /**
  * pal_checker - checks if *s is a palindrome
  * @s: base address of string
+ * @i: left index
+ * @j: right index
  *
  * Return: 1 if s is palindrome, otherwise 0
  */
-int pal_checker(char *s)
+int pal_checker(char *s, int i, int j)
 {
-	int l = _strlen_recursion(s) - 1;
-
-	if (*s == s[l])
-	{
-		s++;
-		l--;
-	}
+	if (s[i] == s[j])
+		if (i > j / 2)
+			return (1);
+		else
+			return (pal_checker(s, i + 1, j - 1));
 	else
 		return (0);
-
-	return (1);
 }
 
 /**
@@ -41,7 +39,5 @@ int pal_checker(char *s)
  */
 int is_palindrome(char *s)
 {
-	if (*s == '0')
-		return (0);
-	return (pal_checker(s));
+	return (pal_checker(s, 0, _strlen_recursion(s) - 1));
 }
