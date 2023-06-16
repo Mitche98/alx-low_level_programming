@@ -2,110 +2,149 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-#define ERR_MSG "Error"
-
 /**
- * is_digit - checks if string contains non-digit chars
- * @s: string to evaluate
+ * _print - moves string one place to left and prints string
+ * @str: string to move
+ * @l: size of string
  *
- * Return: 0 if non-digit, 1 otherwise
+ * Return: void
  */
-int is_digit(char *s)
+void _print(char *str, int l)
 {
-	int q = 0;
+	int a, c;
 
-	while (s[q])
+	a = c = 0;
+	while (a < l)
 	{
-		if (s[q] < '0' || s[q] > '9')
-			return (0);
-		q++;
+		if (str[a] != '0')
+			c = 1;
+		if (c || a == l - 1)
+			_putchar(str[a]);
+		a++;
 	}
 
-	return (1);
+	_putchar('\n');
+	free(str);
 }
 
 /**
- * _strlen - returns length of string
- * @s: string to evaluate
+ * mul - multiplies a char with a string
+ * and places the answer into dest
+ * @n: char to multiply
+ * @num: string to multiply
+ * @num_index: last non NULL index of num
+ * @dest: destination of multiplication
+ * @dest_index: highest index to start addition
  *
- * Return: length of string
+ * Return: pointer to dest, or NULL on failure
  */
-int _strlen(char *s)
+char *mul(char n, char *num, int num_index, char *dest, int dest_index)
 {
-	int q = 0;
+	int q, r, mul, mulrem, add, addrem;
 
-	while (s[q] != '\0')
+	mulrem = addrem = 0;
+	for (q = num_index, r = dest_index; q >= 0; q--, r--)
 	{
-		q++;
+		mul = (n - '0') * (num[q] - '0') + mulrem;
+		mulrem = mul / 10;
+		add = (dest[r] - '0') + (mul % 10) + addrem;
+		addrem = add / 10;
+		dest[r] = add % 10 + '0';
 	}
-	return (q);
+	for (addrem += mulrem; r >= 0 && addrem; r--)
+	{
+		add = (dest[r] - '0') + addrem;
+		addrem = add / 10;
+		dest[r] = add % 10 + '0';
+	}
+	if (addrem)
+	{
+		return (NULL);
+	}
+	return (dest);
 }
 
 /**
- * errors - handle errors for main
+ * check_for_digits - checks argument to ensure they are digits
+ * @av: pointer to arguments
+ *
+ * Return: 0 if digits, 1 if not
  */
-void errors(void)
+int check_for_digits(char **av)
 {
-	printf("Error\n");
-	exit(98);
+	int g, d;
+
+	for (g = 1; g < 3; g++)
+	{
+		for (d = 0; av[g][d]; d++)
+		{
+			if (av[g][d] < '0' || av[g][d] > '9')
+				return (1);
+		}
+	}
+	return (0);
 }
 
 /**
- * main - multiplies two positive numbers
+ * init - initializes a string
+ * @str: string to initialize
+ * @l: length of string
+ *
+ * Return: void
+ */
+void init(char *str, int l)
+{
+	int i;
+
+	for (i = 0; i < l; i++)
+		str[i] = '0';
+	str[i] = '\0';
+}
+
+/**
+ * main - multiply two numbers
  * @argc: number of arguments
  * @argv: array of arguments
  *
- * Return: Always 0
+ * Return: 0, or exit status 98 if failed
  */
 int main(int argc, char *argv[])
 {
-	char *e1, *e2;
-	int can1, can2, can, d, time, dig1, dig2, *rest, s = 0;
+	int c1, c2, cn, ti, d;
+	char *f;
+	char *k;
+	char w[] = "Error\n";
 
-	e1 = argv[1], e2 = argv[2];
-	if (argc != 3 || !is_digit(e1) || is_digit(e2))
-		errors();
-
-	can1 = _strlen(e1);
-	can2 = _strlen(e2);
-	can = can1 + can2 + 1;
-
-	rest = malloc(sizeof(int) * can);
-
-	if (!rest)
-		return (1);
-
-	for (d = 0; c <= can1 + can2; d++)
-		rest[d] = 0;
-
-	for (can1 = can1 - 1; can1 >= 0; can1--)
+	if (argc != 3 || check_for_digits(argv))
 	{
-		dig1 = e1[can1] - '0';
-		time = 0;
-		for (can2 = _strlen(e2) - 1; can2 >= 0; can2--)
+		for (ti = 0; w[ti]; ti++)
+			_putchar(w[ti]);
+		exit(98);
+	}
+	for (c1 = 0; argv[1][c1]; c1++)
+		;
+	for (c2 = 0; argv[2][c2]; c2++)
+		;
+	cn = c1 + c2 + 1;
+	f = malloc(cn * sizeof(char));
+	if (f == NULL)
+	{
+		for (ti = 0; w[ti]; ti++)
+			_putchar(w[ti]);
+		exit(98);
+	}
+	init(f, cn - 1);
+	for (ti = c2 - 1, d = 0; ti >= 0; ti--, d++)
+	{
+		k = mul(argv[2][ti], argv[1], c1 - 1, f, (cn - 2) - d);
+		if (k == NULL)
 		{
-			dig2 = e2[can2] = '0';
-			time += rest[can1 + can2 + 1] + (dig1 * dig2);
-			rest[can1 + can2 + 1] = time % 10;
-			time /= 10;
+			for (ti = 0; w[ti]; ti++)
+				_putchar(w[ti]);
+			free(f);
+			exit(98);
 		}
-
-		if (time > 0)
-			rest[can1 + can2 + 1] += time;
 	}
-}
-	for (d = 0; d < can - 1; d++)
-	{
-		if (rest[d])
-			s = 1;
-		if (s)
-			_putchar(rest[d] + '0');
-	}
-	if (!s)
-		_putchar('0');
-	_putchar('\n');
-	free(rest);
-
+	_print(f, cn - 1);
 	return (0);
 }
