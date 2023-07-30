@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
-
 /**
- * main prints minimum number of coins to make change
+ * main - prints minimum number of coins to make change
  * @argc: number of arguments
  * @argv: array of arguments
  *
